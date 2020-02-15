@@ -206,16 +206,18 @@ calculating the information entropy of an attribution
 '''  
 def InfoEnt(label_arr):
     try :
-        from math import log2
+        from math import log
     except ImportError :
-        print("module math.log2 not found")
+        print("module math.log not found")
     
     ent = 0
     n = len(label_arr)
     label_count = NodeLabel(label_arr)
     
     for key in label_count:
-        ent -= ( label_count[key] / n ) * log2( label_count[key] / n )
+        import math
+        print "label_count[key]: ", label_count[key] / n
+        ent -= ( label_count[key] / n ) * math.log( label_count[key] / float(n), 2)
     
     return ent
 

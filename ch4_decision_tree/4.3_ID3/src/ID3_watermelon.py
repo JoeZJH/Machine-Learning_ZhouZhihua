@@ -10,10 +10,12 @@ import data and pre-analysis through data visualization
 '''
 # using pandas dataframe for .csv read which contains chinese char.
 import pandas as pd
-data_file_encode = "gb18030"  # the watermelon_3.csv is file codec type
-with open("../data/watermelon_3.csv", mode = 'r', encoding = data_file_encode) as data_file:
+import io
+data_file_encode = "GB18030"  # the watermelon_3.csv is file codec type
+with io.open("../data/watermelon_3.csv", mode = 'r', encode=data_file_encode) as data_file:
     df = pd.read_csv(data_file)
-     
+
+print df.columns
 # using seaborn for data visualization.
 # # load chinese font
 # import matplotlib as mpl
@@ -100,9 +102,9 @@ for i in range(k):
  
 # print the prediction accuracy result
 accuracy_sum = 0
-print("accuracy: ", end = "")
+print("accuracy: ")
 for i in range(k):
-    print("%.3f  " % accuracy_scores[i], end = "")
+    print("%.3f  " % accuracy_scores[i])
     accuracy_sum += accuracy_scores[i]
 print("\naverage accuracy: %.3f" % (accuracy_sum/k))
 
